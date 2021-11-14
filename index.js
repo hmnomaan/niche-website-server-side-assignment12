@@ -70,13 +70,16 @@ async function run() {
             res.send(packages);
         });
 ///get All Review
-
-        app.post("/review", async (req, res) => {
-            const cursor = reviewCollection.find({});
+        app.get("/review", async (req, res) => {
+     const cursor = reviewCollection.find({});
             const review = await cursor.toArray();
-    // const result = await reviewCollection.insertOne(req.body);
+       res.send(review);      
+})
+        app.post("/addReview", async (req, res) => {
+          
+    const result = await reviewCollection.insertOne(req.body);
             res.send(result);
-            res.send(review);
+           
   });
         //--------------   Get Package using Id    ------------------
         app.get('/packages/:id', async (req, res) => {
