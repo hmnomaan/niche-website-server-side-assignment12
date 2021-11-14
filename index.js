@@ -74,7 +74,7 @@ async function run() {
         app.post("/review", async (req, res) => {
             const cursor = reviewCollection.find({});
             const review = await cursor.toArray();
-    const result = await reviewCollection.insertOne(req.body);
+    // const result = await reviewCollection.insertOne(req.body);
             res.send(result);
             res.send(review);
   });
