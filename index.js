@@ -77,6 +77,16 @@ async function run() {
             const package = await packagesCollections.findOne(query);
             res.json(package);
         });
+           // DELETE products
+        app.delete('/packages/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await usersCollection.deleteOne(query);
+
+            console.log('deleting user with id ', result);
+
+            res.json(result);
+        })
 
         //--------------   Insert New Package    ------------------
         app.post('/package', async (req, res) => {
