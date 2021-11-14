@@ -143,7 +143,7 @@ async function run() {
             res.json(result)
         })
     // review
-  app.post("/addReview", async (req, res) => {
+  app.post("/review", async (req, res) => {
     const result = await reviewCollection.insertOne(req.body);
     res.send(result);
   });
