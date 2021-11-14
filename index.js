@@ -55,6 +55,7 @@ async function run() {
         const packagesCollections = database.collection('packages');
         const ordersCollections = database.collection('orders');
         const usersCollection = database.collection('users');
+        const reviewCollection = database.collection('review');
         //--------------   Get All Offers   ------------------
         app.get('/offers', async (req, res) => {
             const cursor = offersCollections.find({});
@@ -131,7 +132,17 @@ async function run() {
             const result = await ordersCollections.updateOne(filter, updateDoc, options);
             res.json(result)
         })
-    
+    // review
+  app.post("/addReview", async (req, res) => {
+    const result = await reviewCollection.insertOne(req.body);
+    res.send(result);
+  });
+          app.post("/addUserInfo", async (req, res) => {
+    console.log("req.body");
+    const result = await usersCollection.insertOne(req.body);
+    res.send(result);
+    console.log(result);
+  });
 
     // Admin Access adding to database 
 
