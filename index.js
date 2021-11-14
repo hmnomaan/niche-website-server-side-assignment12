@@ -69,7 +69,15 @@ async function run() {
             const packages = await cursor.toArray();
             res.send(packages);
         });
+///get All Review
 
+        app.post("/review", async (req, res) => {
+            const cursor = reviewCollection.find({});
+            const review = await cursor.toArray();
+    const result = await reviewCollection.insertOne(req.body);
+            res.send(result);
+            res.send(review);
+  });
         //--------------   Get Package using Id    ------------------
         app.get('/packages/:id', async (req, res) => {
             const id = req.params.id;
@@ -77,6 +85,8 @@ async function run() {
             const package = await packagesCollections.findOne(query);
             res.json(package);
         });
+
+
            // DELETE products
         app.delete('/packages/:id', async (req, res) => {
             const id = req.params.id;
@@ -142,16 +152,12 @@ async function run() {
             const result = await ordersCollections.updateOne(filter, updateDoc, options);
             res.json(result)
         })
-    // review
-  app.post("/review", async (req, res) => {
-    const result = await reviewCollection.insertOne(req.body);
-    res.send(result);
-  });
+   
           app.post("/addUserInfo", async (req, res) => {
     console.log("req.body");
     const result = await usersCollection.insertOne(req.body);
     res.send(result);
-    console.log(result);
+    
   });
 
     // Admin Access adding to database 
