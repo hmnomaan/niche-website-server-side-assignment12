@@ -81,7 +81,7 @@ async function run() {
         app.delete('/packages/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
-            const result = await packagesCollection.deleteOne(query);
+            const result = await packagesCollections.deleteOne(query);
 
             console.log('deleting user with id ', result);
 
